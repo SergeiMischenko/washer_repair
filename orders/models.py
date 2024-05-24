@@ -1,5 +1,6 @@
 from django.core.exceptions import ValidationError
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import (MaxValueValidator, MinValueValidator,
+                                    RegexValidator)
 from django.db import models
 
 
@@ -16,12 +17,8 @@ class WasherModel(models.Model):
         return self.name
 
     def clean(self):
-        # Проверяем, есть ли уже модель в базе данных
-        existing_models = WasherModel.objects.filter(name=self.name)
-        if self.pk:  # Если это обновление, исключаем текущую модель
-            existing_models = existing_models.exclude(pk=self.pk)
-        if existing_models.exists():
-            raise ValidationError("Модель уже существует")
+        if WasherModel.objects.filter(name=self.name).exclude(pk=self.pk).exists():
+            raise ValidationError(f"Модель {self.name} уже существует")
 
 
 class Service(models.Model):
@@ -55,8 +52,9 @@ class RepairRequest(models.Model):
     )
     name = models.CharField(max_length=100, verbose_name="Имя")
     surname = models.CharField(max_length=100, verbose_name="Фамилия")
-    phone = models.CharField(max_length=30, verbose_name="Телефон")
-    email = models.CharField(max_length=100, blank=True, verbose_name="Email")
+    phone_regex = RegexValidator(regex=r"^\+?1?\d{8,15}$")
+    phone = models.CharField(validators=[phone_regex], max_length=16, verbose_name="Телефон")
+    email = models.EmailField(max_length=100, blank=True, verbose_name="Email")
     status = models.CharField(
         max_length=100,
         choices=STATUS_CHOICES,
@@ -108,11 +106,7 @@ class Review(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Создано")
 
     def clean(self):
-        # Проверяем, есть ли уже отзыв для этого заказа
-        existing_reviews = Review.objects.filter(order=self.order)
-        if self.pk:  # Если это обновление, исключаем текущий отзыв
-            existing_reviews = existing_reviews.exclude(pk=self.pk)
-        if existing_reviews.exists():
+        if Review.objects.filter(order=self.order).exclude(pk=self.pk).exists():
             raise ValidationError("Можно оставить только один отзыв на один заказ")
 
     class Meta:

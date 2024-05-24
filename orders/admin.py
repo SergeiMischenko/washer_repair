@@ -46,26 +46,24 @@ class RepairRequestAdmin(admin.ModelAdmin):
     ordering = ["-created_at"]
     inlines = [ReviewInline]
 
+    @admin.display(description="ФИО")
     def full_name(self, obj):
         return f"{obj.name} {obj.surname}"
-
-    full_name.short_description = "ФИО"
 
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ("id", "order_link", "rating", "created_at")
-    list_display_links = ("id", "order_link")
-    list_filter = ("rating",)
-    search_fields = ("order__name", "order__surname")
+    list_display = ["id", "order_link", "rating", "created_at"]
+    list_display_links = ["id", "order_link"]
+    list_filter = ["rating"]
+    search_fields = ["order__name", "order__surname"]
     date_hierarchy = "created_at"
-    ordering = ("-created_at",)
+    ordering = ["-created_at"]
 
+    @admin.display(description="Заявка")
     def order_link(self, obj):
         url = reverse("admin:orders_repairrequest_change", args=[obj.order.pk])
         return format_html('<a href="{}">{}</a>', url, obj.order)
-
-    order_link.short_description = "Заявка"
 
 
 admin.site.site_title = "Моя админка"
