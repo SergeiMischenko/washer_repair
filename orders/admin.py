@@ -1,8 +1,9 @@
+from django import forms
 from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
 
-from orders.models import RepairRequest, Review, WasherModel
+from orders.models import RepairRequest, Review, Service, WasherModel
 
 
 @admin.register(WasherModel)
@@ -14,6 +15,14 @@ class WasherModelAdmin(admin.ModelAdmin):
 class ReviewInline(admin.StackedInline):
     model = Review
     max_num = 1
+
+
+@admin.register(Service)
+class ServiceAdmin(admin.ModelAdmin):
+    list_display = ["id", "name", "price"]
+    search_fields = ["name", "price"]
+    list_editable = ["name", "price"]
+    ordering = ["name"]
 
 
 @admin.register(RepairRequest)

@@ -24,6 +24,25 @@ class WasherModel(models.Model):
             raise ValidationError("Модель уже существует")
 
 
+class Service(models.Model):
+    name = models.CharField(max_length=255, verbose_name="Услуга")
+    price = models.PositiveIntegerField(
+        validators=[
+            MinValueValidator(100),
+            MaxValueValidator(100000),
+        ],
+        verbose_name="Цена",
+    )
+
+    class Meta:
+        verbose_name = "Услуга"
+        verbose_name_plural = "Услуги"
+        ordering = ["name"]
+        indexes = [models.Index(fields=["price"])]
+
+    def __str__(self):
+        return f"{self.name} - {self.price} руб."
+
 
 class RepairRequest(models.Model):
     STATUS_CHOICES = (
@@ -51,6 +70,9 @@ class RepairRequest(models.Model):
         null=True,
         related_name="orders",
         verbose_name="Модель",
+    )
+    services = models.ManyToManyField(
+        Service, blank=True, verbose_name="Услуги", related_name="orders"
     )
     description = models.TextField(blank=True, verbose_name="Описание поломки")
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Создано")
