@@ -1,0 +1,25 @@
+services:
+  #  washer_postgres:
+  #    image: postgres:16
+  #    container_name: washer_postgres
+  #    volumes:
+  #      - ./db_data:/var/lib/postgresql/data
+  #    env_file:
+  #      - .env
+  washer_django:
+    build: .
+    container_name: washer_django
+    #    depends_on:
+    #      - washer_postgres
+    volumes:
+      - static_volume:/app/static
+      - media_volume:/app/media
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env
+    command: gunicorn washer_repair.wsgi:application --bind 0.0.0.0:8000
+
+volumes:
+  static_volume:
+  media_volume:
