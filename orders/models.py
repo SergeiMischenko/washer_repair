@@ -25,7 +25,7 @@ class Service(models.Model):
     name = models.CharField(max_length=255, verbose_name="Услуга")
     price = models.PositiveIntegerField(
         validators=[
-            MinValueValidator(100),
+            MinValueValidator(0),
             MaxValueValidator(100000),
         ],
         verbose_name="Цена",
@@ -34,7 +34,7 @@ class Service(models.Model):
     class Meta:
         verbose_name = "Услуга"
         verbose_name_plural = "Услуги"
-        ordering = ["name"]
+        ordering = ["price", "name"]
         indexes = [models.Index(fields=["price"])]
 
     def __str__(self):

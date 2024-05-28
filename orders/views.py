@@ -1,7 +1,12 @@
 from django.shortcuts import redirect, render
 
 from orders.forms import RepairRequestForm
-from orders.models import RepairRequest
+from orders.models import RepairRequest, Service
+
+
+def index(request):
+    services = Service.objects.all()
+    return render(request, "washer_repair/index.html", {"services": services})
 
 
 def create_request(request):

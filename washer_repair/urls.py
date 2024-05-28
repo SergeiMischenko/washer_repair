@@ -20,12 +20,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
-from washer_repair import views
-
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", views.index, name="index"),
-    path("orders/", include("orders.urls", namespace="orders")),
+    path("", include("orders.urls", namespace="orders")),
 ]
 
 if settings.DEBUG:

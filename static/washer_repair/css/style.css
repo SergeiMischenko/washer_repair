@@ -920,7 +920,15 @@ table td + td {
     border-left: 2px solid #3E15B1;
 }
 
-.services__table-row td {
+.services__table-row td.table_row-name {
+    text-align: left;
+    font-weight: bold;
+    font-size: 18px;
+    border-bottom: 3px solid #3E15B1;
+    padding: 7px 0;
+}
+
+.services__table-row td.table_row-price {
     text-align: center;
     font-weight: bold;
     font-size: 18px;
