@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	<section class="arrow">
+		<img src="{% static "washer_repair/images/svg/arrow_2.svg" %}" alt="arrow" class="arrow__underline">
+	</section>
+	<section class="services">
+		<img src="{% static "washer_repair/images/svg/line_1.svg" %}" alt="line" class="services__line-pic">
+		<div class="services__block">
+			<div class="services__block-inside">
+				<div class="services__title">
+					<div class="services__service">
+						<p class="services__service-text">
+							Наименование услуги
+						</p>
+					</div>
+					<div class="services__service">
+						<p class="services__service-text">
+							Стоимость услуги
+						</p>
+					</div>
+				</div>
+
+				<div class="services__service-block">
+					<table class="services__table">
+						
+						<tbody>
+						
+						<tr class="services__table-row">
+							<td>Замена барабана</td>
+							<td>2500</td>
+						</tr>
+						<tr class="services__table-row">
+							<td>Замена барабана</td>
+							<td>2500</td>
+						</tr>
+						
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<img src="{% static "washer_repair/images/svg/line_1.svg" %}" alt="line" class="services__line-pic">
+	</section>
+	<section class="arrow__rotate">
+		<img src="{% static "washer_repair/images/svg/arrow_2.svg" %}" alt="arrow" class="arrow__underline">
+	</section>
+{% endblock content %}
+
