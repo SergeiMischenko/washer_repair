@@ -1,3 +1,6 @@
+import os
+
+from django.conf import settings
 from django.shortcuts import redirect, render
 
 from orders.forms import RepairRequestForm
@@ -29,3 +32,11 @@ def request_status(request, request_id):
     return render(
         request, "orders/request_status.html", {"repair_request": repair_request}
     )
+
+
+def privacy(request):
+    file_path = os.path.join(settings.BASE_DIR, 'static', 'privacy.txt')
+    with open(file_path, 'r', encoding='utf-8') as file:
+        policy_text = file.read()
+
+    return render(request, 'washer_repair/privacy.html', {'policy_text': policy_text})

@@ -11,4 +11,5 @@ urlpatterns = [
     path(
         "status_request/<int:request_id>/", views.request_status, name="request_status"
     ),
+    path('privacy/', views.privacy, name='privacy'),
 ]
