@@ -13,13 +13,14 @@
 	<link rel="shortcut icon" href="{% static 'washer_repair/images/svg/logo.svg' %}" type="image/x-icon"/>
 	<title>Ремонт стиральных машин в Орле</title>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="wrapper">
 	{% block menu %}
 		<header class="header">
 			<div class="header__logo">
-				<a href="/" class="header__logo-link">
+				<a href="{% url 'orders:index' %}" class="header__logo-link">
 					<img src="{% static "washer_repair/images/svg/logo.svg" %}" alt="Ремонт стиральных машин в Орле"
 					     class="header__logo-pic">
 				</a>
@@ -27,13 +28,13 @@
 			<nav class="header__nav">
 				<ul class="header__list">
 					<li class="header__item">
-						<a href="#!" class="header__link">Цены</a>
+						<a href="{% url 'orders:index' %}#services" class="header__link">Цены</a>
 					</li>
 					<li class="header__item">
-						<a href="#!" class="header__link">О нас</a>
+						<a href="{% url 'orders:index' %}#about" class="header__link">О нас</a>
 					</li>
 					<li class="header__item">
-						<a href="#!" class="header__link">Контакты</a>
+						<a href="{% url 'orders:index' %}#contact" class="header__link">Контакты</a>
 					</li>
 					<li class="header__item">
 						<a href="{% url "orders:feedback" %}" class="header__link">Отзывы</a>
@@ -65,5 +66,6 @@
 	{% endblock footer %}
 
 </div>
+<script src="{% static 'washer_repair/js/smooth_scroll.js' %}" async></script>
 </body>
 </html>

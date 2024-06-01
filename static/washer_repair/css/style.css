@@ -720,6 +720,7 @@ template {
 /* Washer Repair styles */
 html {
     box-sizing: border-box;
+    scroll-behavior: smooth;
 }
 
 *, *::before, *::after {
@@ -741,6 +742,8 @@ body {
 
 /* Header */
 .header {
+    position: sticky;
+    top: 0;
     height: 65px;
     background-color: #3E15B1;
     box-shadow: 0 5px 5px 0 #1569b19e;
@@ -748,6 +751,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 0 25px;
+    z-index: 2;
 }
 
 .header__logo {
