@@ -10,13 +10,13 @@
 	<meta name="keywords"
 	      content="ремонт, стиральные машины, Орёл, диагностика, замена подшипников, скидка пенсионерам">
 	<link rel="stylesheet" href="{% static "washer_repair/css/style.css" %}" type="text/css">
-	<link rel="shortcut icon" href="{% static 'washer_repair/images/main.ico' %}" type="image/x-icon"/>
+	<link rel="shortcut icon" href="{% static 'washer_repair/images/svg/logo.svg' %}" type="image/x-icon"/>
 	<title>Ремонт стиральных машин в Орле</title>
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="wrapper">
-	{% block header %}
+	{% block menu %}
 		<header class="header">
 			<div class="header__logo">
 				<a href="/" class="header__logo-link">
@@ -36,7 +36,7 @@
 						<a href="#!" class="header__link">Контакты</a>
 					</li>
 					<li class="header__item">
-						<a href="#!" class="header__link">Отзывы</a>
+						<a href="{% url "orders:feedback" %}" class="header__link">Отзывы</a>
 					</li>
 					<li class="header__item">
 						<a href="#!" class="header__link">Моя заявка</a>
@@ -48,31 +48,9 @@
 			</nav>
 		</header>
 
-		<main>
-			<section class="title">
-				<div class="title__text">
-					<h1 class="title__text-head">
-						Ремонт стиральных машин в Орле
-					</h1>
-					<br>
-					<ul class="title__text-list">
-						<li class="title__text-item">Ремонт стиральных машин с выездом на дом</li>
-						<li class="title__text-item">Замена подшипников производится в <span>мастерской</span></li>
-						<li class="title__text-item">Диагноcтика 300 руб. <span>(Беcплатнo в cлучае peмoнтa)</span></li>
-						<li class="title__text-item">Пенсионерам скидка <span>20%</span> от стоимости общего ремонта
-						</li>
-						<li class="title__text-item">Пpeдоставляeтся гapантия</li>
-						<br>
-						<li class="title__text-item-last">Выкупим вашу нерабочую технику, на запчасти!</li>
-					</ul>
-					<p class="title__text-about">
-					</p>
-				</div>
-				<img src="{% static "washer_repair/images/washer_1.png" %}" alt="Стиральная машина"
-				     class="title-pic">
-			</section>
-		</main>
+	{% endblock menu %}
 
+	{% block header %}
 	{% endblock header %}
 
 	{% block content %}

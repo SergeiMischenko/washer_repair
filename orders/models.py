@@ -118,6 +118,7 @@ class Review(models.Model):
             models.Index(fields=["-created_at"]),
             models.Index(fields=["rating"]),
         ]
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"{self.order}: {self.text}"

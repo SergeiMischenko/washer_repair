@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+{% block content %}
+	<section class="comments__section">
+		<div class="comments__block">
+			<div class="comment">
+				{% for comment in comments %}
+					<div class="comment__name">
+						{{ comment.order.name }} {{ comment.order.surname|slice:":1" }}.
+						<div class="rating-result">
+							{% with rating=comment.rating|range_r %}
+								{% for star in rating %}
+									<span class="active"></span>
+								{% endfor %}
+								{% for star in 5|subtract:comment.rating|range_r %}
+									<span></span>
+								{% endfor %}
+							{% endwith %}
+						</div>
+					</div>
+					<div class="comment__content">
+						<p class="comment__content-text">
+							{{ comment.text }}
+						</p>
+						<p class="comment__content-date">
+							{{ comment.created_at }}
+						</p>
+					</div>
+				{% endfor %}
+			</div>
+		</div>
+		<section class="comments__arrow">
+			<img src="{% static "washer_repair/images/svg/arrow_3.svg" %}" alt="arrow">
+		</section>
+	</section>
+
+{% endblock content %}
