@@ -1,14 +1,68 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Создание заявки</title>
-</head>
-<body>
-    <h1>Создание заявки на ремонт</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Отправить заявку</button>
-    </form>
-</body>
-</html>
+{#<!DOCTYPE html>#}
+{#<html>#}
+{#<head>#}
+{#    <title>Создание заявки</title>#}
+{#</head>#}
+{#<body>#}
+{#    <h1>Создание заявки на ремонт</h1>#}
+{#    <form hx-post="{{ request.path }}" class="modal-content">#}
+{#        {% csrf_token %}#}
+{#        {{ form.as_p }}#}
+{#        <button type="submit">Отправить заявку</button>#}
+{#    </form>#}
+{#</body>#}
+{#</html>#}
+
+{% load widget_tweaks %}
+{% with WIDGET_ERROR_CLASS='is-invalid' %}
+	<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content">
+		<div class="modal-header">
+			<h4 class="modal-title">Оставьте заявку и мы вам перезвоним!</h4>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body">
+			<div class="mb-3">
+				<label for="{{ form.name.id_for_label }}" class="form-label">Имя <span
+						class="form-label-star">*</span></label>
+				{% render_field form.name class="form-control" placeholder="Ваше имя" type="text" title="Введите ваше имя" %}
+				<div class="invalid-feedback">{{ form.name.errors|first }}</div>
+			</div>
+			<div class="mb-3">
+				<label for="{{ form.surname.id_for_label }}" class="form-label">Фамилия <span
+						class="form-label-star">*</span></label>
+				{% render_field form.surname class="form-control" placeholder="Ваша фамилия" type="text" title="Введите вашу фамилию" %}
+				<div class="invalid-feedback">{{ form.surname.errors|first }}</div>
+			</div>
+			<div class="mb-3">
+				<label for="{{ form.phone.id_for_label }}" class="form-label">Телефон <span
+						class="form-label-star">*</span></label>
+				{% render_field form.phone class="form-control" placeholder="+x(xxx)xxx-xx-xx" title="Введите ваш номер телефона" %}
+				<div class="invalid-feedback">{{ form.phone.errors|first }}</div>
+			</div>
+			<div class="mb-3">
+				<label for="{{ form.email.id_for_label }}" class="form-label">E-mail <span class="form-label-span">(необязательно)</span></label>
+				{% render_field form.email class="form-control" placeholder="Если хотите получить уведомление о заявке..." title="Введите ваш Email" %}
+				<div class="invalid-feedback">{{ form.email.errors|first }}</div>
+			</div>
+			<div class="mb-3">
+				<label for="{{ form.model_washer.id_for_label }}" class="form-label">Модель стиральной машины <span
+						class="form-label-span">(необязательно)</span></label>
+				{% render_field form.model_washer class="form-control" title="Какая модель вашей стиральной машины?" %}
+				<div class="invalid-feedback">{{ form.model_washer.errors|first }}</div>
+			</div>
+			<div class="mb-3">
+				<label for="{{ form.description.id_for_label }}" class="form-label">Описание поломки <span
+						class="form-label-span">(необязательно)</span></label>
+				{% render_field form.description class="form-control" rows="4" placeholder="..." title="Опишите проблему" %}
+				<div class="invalid-feedback">{{ form.description.errors|first }}</div>
+			</div>
+			<div>
+				<p><span class="form-label-star">*</span> - обязательные поля</p>
+			</div>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+			<button type="submit" class="btn btn-primary">Отправить</button>
+		</div>
+	</form>
+{% endwith %}

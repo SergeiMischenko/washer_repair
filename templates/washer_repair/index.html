@@ -27,7 +27,7 @@
 	</main>
 {% endblock header %}
 {% block content %}
-	<section class="arrow"  id="services">
+	<section class="arrow" id="services">
 		<img src="{% static "washer_repair/images/svg/arrow_2.svg" %}" alt="arrow" class="arrow__underline">
 	</section>
 
@@ -62,7 +62,7 @@
 									<td class="table_row-price">{{ service.price }} руб.</td>
 								{% else %}
 									<td class="table_row-name">{{ service.name }}</td>
-									<td class="table_row-price">от {{ service.price }} руб.</td>
+									<td class="table_row-price">от {{ service.price }} руб</td>
 								{% endif %}
 							</tr>
 						{% endfor %}

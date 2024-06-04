@@ -1,6 +1,8 @@
+import json
 import os
 
 from django.conf import settings
+from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
 from orders.forms import RepairRequestForm
@@ -22,7 +24,14 @@ def create_request(request):
         form = RepairRequestForm(request.POST)
         if form.is_valid():
             repair_request = form.save()
-            return redirect("orders:request_status", request_id=repair_request.id)
+            # return redirect("orders:request_status", request_id=repair_request.id)
+            return HttpResponse(
+                status=204,
+                headers={
+                    'HX-Trigger': json.dumps({
+                        "showMessage": f"Заявка успешно создана. № вашей заявки: {repair_request.pk}. Ожидайте звонка."
+                    })
+                })
     form = RepairRequestForm()
     return render(request, "orders/create_request.html", {"form": form})
 
