@@ -52,7 +52,7 @@ class RepairRequest(models.Model):
     )
     name = models.CharField(max_length=100, verbose_name="Имя")
     surname = models.CharField(max_length=100, verbose_name="Фамилия")
-    phone_regex = RegexValidator(regex=r"^\+?1?\d{8,15}$",  message="Некорректный номер телефона")
+    phone_regex = RegexValidator(regex=r"^\+?1?\d{8,15}$",  message="Формат номера: +x(xxx)xxx-xx-xx")
     phone = models.CharField(
         validators=[phone_regex], max_length=16, verbose_name="Телефон"
     )

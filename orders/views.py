@@ -32,7 +32,7 @@ def create_request(request):
                         "showMessage": f"Заявка успешно создана. № вашей заявки: {repair_request.pk}. Ожидайте звонка."
                     })
                 })
-    form = RepairRequestForm()
+    form = RepairRequestForm(request.POST or None)
     return render(request, "orders/create_request.html", {"form": form})
 
 

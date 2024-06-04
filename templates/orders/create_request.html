@@ -1,18 +1,3 @@
-{#<!DOCTYPE html>#}
-{#<html>#}
-{#<head>#}
-{#    <title>Создание заявки</title>#}
-{#</head>#}
-{#<body>#}
-{#    <h1>Создание заявки на ремонт</h1>#}
-{#    <form hx-post="{{ request.path }}" class="modal-content">#}
-{#        {% csrf_token %}#}
-{#        {{ form.as_p }}#}
-{#        <button type="submit">Отправить заявку</button>#}
-{#    </form>#}
-{#</body>#}
-{#</html>#}
-
 {% load widget_tweaks %}
 {% with WIDGET_ERROR_CLASS='is-invalid' %}
 	<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="modal-content">
