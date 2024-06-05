@@ -47,8 +47,6 @@ def request_status(request):
             requests = RepairRequest.objects.filter(
                 surname__iexact=surname, phone__icontains=phone
             )
-            print(surname)
-            print(requests)
             if requests.exists():
                 name = requests[0].name
                 phone = requests[0].phone
