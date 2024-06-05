@@ -1320,6 +1320,10 @@ pre {
     border-radius: 10px;
 }
 
+.form-control::placeholder {
+    color: rgba(141, 141, 141, 0.6);
+}
+
 .form-label-star {
     color: red;
 }

@@ -13,4 +13,3 @@ class RequestStatusForm(forms.ModelForm):
     class Meta:
         model = RepairRequest
         fields = ["name", "surname", "phone"]
-

@@ -38,7 +38,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "orders.apps.OrdersConfig",
     "phonenumber_field",
-    'widget_tweaks',
+    "widget_tweaks",
 ]
 
 MIDDLEWARE = [

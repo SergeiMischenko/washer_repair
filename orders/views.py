@@ -3,10 +3,10 @@ import os
 
 from django.conf import settings
 from django.http import HttpResponse
-from django.shortcuts import redirect, render
+from django.shortcuts import render
 
 from orders.forms import RepairRequestForm, RequestStatusForm
-from orders.models import RepairRequest, Service, Review
+from orders.models import RepairRequest, Review, Service
 
 
 def index(request):
@@ -27,10 +27,13 @@ def create_request(request):
             return HttpResponse(
                 status=204,
                 headers={
-                    'HX-Trigger': json.dumps({
-                        "showMessage": f"Заявка успешно создана. № вашей заявки: {repair_request.pk}. Ожидайте звонка."
-                    })
-                })
+                    "HX-Trigger": json.dumps(
+                        {
+                            "showMessage": f"Заявка успешно создана. № вашей заявки: {repair_request.pk}. Ожидайте звонка."
+                        }
+                    )
+                },
+            )
     form = RepairRequestForm(request.POST or None)
     return render(request, "orders/create_request.html", {"form": form})
 
@@ -39,21 +42,39 @@ def request_status(request):
     if request.method == "POST":
         form = RequestStatusForm(request.POST)
         if form.is_valid():
-            phone = form.cleaned_data["phone"]
             surname = form.cleaned_data["surname"]
-            requests = RepairRequest.objects.filter(surname=surname, phone=phone)
+            phone = form.cleaned_data["phone"]
+            requests = RepairRequest.objects.filter(
+                surname__iexact=surname, phone__icontains=phone
+            )
+            print(surname)
+            print(requests)
             if requests.exists():
                 name = requests[0].name
-                return render(request, "orders/request_status.html", {"requests": requests, "name": name, "surname": surname, "phone": phone})
+                phone = requests[0].phone
+                return render(
+                    request,
+                    "orders/request_status.html",
+                    {
+                        "requests": requests,
+                        "name": name,
+                        "surname": surname,
+                        "phone": phone,
+                    },
+                )
             error_message = "Заявка не найдена. Проверьте данные."
-            return render(request, "orders/request_status_modal.html", {"form": form, "error_message": error_message})
+            return render(
+                request,
+                "orders/request_status_modal.html",
+                {"form": form, "error_message": error_message},
+            )
     form = RequestStatusForm(request.POST or None)
     return render(request, "orders/request_status_modal.html", {"form": form})
 
 
 def privacy(request):
-    file_path = os.path.join(settings.BASE_DIR, 'static', 'privacy.txt')
-    with open(file_path, 'r', encoding='utf-8') as file:
+    file_path = os.path.join(settings.BASE_DIR, "static", "privacy.txt")
+    with open(file_path, "r", encoding="utf-8") as file:
         policy_text = file.read()
 
-    return render(request, 'washer_repair/privacy.html', {'policy_text': policy_text})
+    return render(request, "washer_repair/privacy.html", {"policy_text": policy_text})
