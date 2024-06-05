@@ -1,11 +1,16 @@
 {% load widget_tweaks %}
 {% with WIDGET_ERROR_CLASS='is-invalid' %}
-	<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="create_request_modal modal-content">
+	<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="request__status_modal  modal-content">
 		<div class="modal-header">
-			<h4 class="modal-title">Оставьте заявку и мы вам перезвоним!</h4>
+			<h4 class="modal-title">Посмотреть статус заявки</h4>
 			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 		</div>
 		<div class="modal-body">
+			{% if error_message %}
+				<div class="alert alert-danger" role="alert">
+					{{ error_message }}
+				</div>
+			{% endif %}
 			<div class="mb-3">
 				<label for="{{ form.name.id_for_label }}" class="form-label">Имя <span
 						class="form-label-star">*</span></label>
@@ -23,21 +28,6 @@
 						class="form-label-star">*</span></label>
 				{% render_field form.phone class="form-control" placeholder="+x(xxx)xxx-xx-xx" title="Введите ваш номер телефона" %}
 				<div class="invalid-feedback">{{ form.phone.errors|first }}</div>
-			</div>
-			<div class="mb-3">
-				<label for="{{ form.email.id_for_label }}" class="form-label">E-mail</label>
-				{% render_field form.email class="form-control" placeholder="Если хотите получить уведомление о заявке..." title="Введите ваш Email" %}
-				<div class="invalid-feedback">{{ form.email.errors|first }}</div>
-			</div>
-			<div class="mb-3">
-				<label for="{{ form.model_washer.id_for_label }}" class="form-label">Модель стиральной машины</label>
-				{% render_field form.model_washer class="form-control" title="Какая модель вашей стиральной машины?" %}
-				<div class="invalid-feedback">{{ form.model_washer.errors|first }}</div>
-			</div>
-			<div class="mb-3">
-				<label for="{{ form.description.id_for_label }}" class="form-label">Описание поломки</label>
-				{% render_field form.description class="form-control" rows="4" placeholder="..." title="Опишите проблему" %}
-				<div class="invalid-feedback">{{ form.description.errors|first }}</div>
 			</div>
 			<div>
 				<p><span class="form-label-star">*</span> - обязательные поля</p>

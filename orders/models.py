@@ -86,6 +86,7 @@ class RepairRequest(models.Model):
             models.Index(fields=["-updated_at"]),
             models.Index(fields=["status"]),
         ]
+        ordering = ["-updated_at"]
 
     def __str__(self):
         return f"№{self.pk} {self.name} {self.surname}"

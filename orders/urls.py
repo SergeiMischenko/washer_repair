@@ -9,7 +9,7 @@ urlpatterns = [
     path("feedback/", views.feedback, name="feedback"),
     path("create_request/", views.create_request, name="create_request"),
     path(
-        "status_request/<int:request_id>/", views.request_status, name="request_status"
+        "status_request/", views.request_status, name="request_status"
     ),
     path('privacy/', views.privacy, name='privacy'),
 ]

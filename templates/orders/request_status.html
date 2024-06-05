@@ -1,14 +1,43 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Статус заявки</title>
-</head>
-<body>
-    <h1>Статус вашей заявки</h1>
-    <p>Номер заявки: {{ repair_request.id }}</p>
-    <p>Имя: {{ repair_request.name }}</p>
-    <p>Фамилия: {{ repair_request.surname }}</p>
-    <p>Телефон: {{ repair_request.phone }}</p>
-    <p>Статус: {{ repair_request.status }}</p>
-</body>
-</html>
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl ">
+	<div class="request__status modal-content">
+		<div class="modal-header">
+			<h3 class="modal-title">Список заявок на имя: {{ name }} {{ surname }} ({{ phone }})</h3>
+			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		</div>
+		<div class="modal-body table-responsive ">
+			<table class="table table-hover text-center text-nowrap">
+				<thead>
+				<tr class="fs-5 fw-bolder">
+					<th>№ Заказа</th>
+					<th>Статус</th>
+					<th>Модель машины</th>
+					<th>Дата обновления</th>
+				</tr>
+				</thead>
+				<tbody>
+				{% for request_st in requests %}
+					<tr class="{% if request_st.status == 'Принято в обработку' %} table-danger
+							{% elif request_st.status == 'В ожидании запчастей' %} table-primary
+							{% elif request_st.status == 'В процессе ремонта' %} table-warning
+							{% elif request_st.status == 'Тестирование и проверка' %} table-info
+							{% elif request_st.status == 'Готово к выдаче' %} table-success
+							{% elif request_st.status == 'Заявка закрыта' %} table-light
+							{% endif %} fs-6">
+						<td>{{ request_st.id }}</td>
+						<td>{{ request_st.status }}</td>
+						{% if request_st.model_washer %}
+							<td>{{ request_st.model_washer }}</td>
+						{% else %}
+							<td>---</td>
+						{% endif %}
+						<td>{{ request_st.updated_at }}</td>
+					</tr>
+				{% endfor %}
+				</tbody>
+			</table>
+		</div>
+		<div class="modal-footer">
+			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+		</div>
+	</div>
+</div>

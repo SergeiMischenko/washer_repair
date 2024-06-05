@@ -3,7 +3,8 @@
 <html lang="ru">
 <head>
 	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"><meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<meta name="description" content="Ремонт стиральных машин г. Орёл">
 	<meta name="keywords"
 	      content="ремонт, стиральные машины, Орёл, диагностика, замена подшипников, скидка пенсионерам">
@@ -38,16 +39,15 @@
 					<li class="header__item">
 						<a href="{% url "orders:feedback" %}" class="header__link">Отзывы</a>
 					</li>
-					<li class="header__item">
-						<a href="#!" class="header__link">Моя заявка</a>
-					</li>
-					{#<li class="header__item">#}
-					{#<a href="#" id="openModalLink" class="header__link-last">Оставить заявку</a>#}
-					{#</li>#}
+				</ul>
+				<div class="nav__btn">
+					<button class="header__link" hx-get="{% url 'orders:request_status' %}" hx-target="#dialog">
+						Моя заявка
+					</button>
 					<button class="header__link-last" hx-get="{% url 'orders:create_request' %}" hx-target="#dialog">
 						Оставить заявку
 					</button>
-				</ul>
+				</div>
 			</nav>
 			<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
 				<div id="toast" class="toast align-items-center text-white fs-5 bg-success border-0" role="alert"
@@ -96,7 +96,7 @@
 </div>
 
 <div id="modal" class="modal fade">
-	<div id="dialog" class="modal-dialog modal-dialog-centered modal-dialog-scrollable" hx-target="this"></div>
+	<div id="dialog" class="modal-dialog modal-dialog-centered modal-dialog-scrollable justify-content-center" hx-target="this"></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

@@ -5,7 +5,7 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import redirect, render
 
-from orders.forms import RepairRequestForm
+from orders.forms import RepairRequestForm, RequestStatusForm
 from orders.models import RepairRequest, Service, Review
 
 
@@ -24,7 +24,6 @@ def create_request(request):
         form = RepairRequestForm(request.POST)
         if form.is_valid():
             repair_request = form.save()
-            # return redirect("orders:request_status", request_id=repair_request.id)
             return HttpResponse(
                 status=204,
                 headers={
@@ -36,11 +35,20 @@ def create_request(request):
     return render(request, "orders/create_request.html", {"form": form})
 
 
-def request_status(request, request_id):
-    repair_request = RepairRequest.objects.get(id=request_id)
-    return render(
-        request, "orders/request_status.html", {"repair_request": repair_request}
-    )
+def request_status(request):
+    if request.method == "POST":
+        form = RequestStatusForm(request.POST)
+        if form.is_valid():
+            phone = form.cleaned_data["phone"]
+            surname = form.cleaned_data["surname"]
+            requests = RepairRequest.objects.filter(surname=surname, phone=phone)
+            if requests.exists():
+                name = requests[0].name
+                return render(request, "orders/request_status.html", {"requests": requests, "name": name, "surname": surname, "phone": phone})
+            error_message = "Заявка не найдена. Проверьте данные."
+            return render(request, "orders/request_status_modal.html", {"form": form, "error_message": error_message})
+    form = RequestStatusForm(request.POST or None)
+    return render(request, "orders/request_status_modal.html", {"form": form})
 
 
 def privacy(request):

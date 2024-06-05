@@ -758,6 +758,12 @@ body {
     margin-left: 25px;
 }
 
+.header__nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .header__item {
     display: inline-block;
     margin-right: 30px;
@@ -802,6 +808,21 @@ body {
     background: #109888;
     color: white;
 }
+
+.nav__btn {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px
+}
+
+.nav__btn button:first-child {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+}
+
 
 /* Title */
 .title {
@@ -1270,9 +1291,21 @@ pre {
 /* Modal */
 .modal-content {
     border: solid 3px #7458b9;
-    background: linear-gradient(110.94deg, rgb(195 182 231) 10%, rgb(195 215 255) 50%, rgb(219 219 219) 90%);
     border-radius: 15px;
 }
+
+.create_request_modal {
+    background: linear-gradient(110.94deg, rgb(195 182 231) 10%, rgb(195 215 255) 50%, rgb(219 219 219) 90%);
+}
+
+.request__status_modal {
+    background: linear-gradient(110.94deg, rgb(219 219 219) 10%, rgb(195 215 255) 50%, rgb(195 182 231) 90%);
+}
+
+.request__status {
+    background: linear-gradient(110.94deg, rgb(174 235 232) 10%, rgb(195 182 231) 90%);
+}
+
 .modal-title {
     text-align: center;
     font-size: 20px;
@@ -1287,12 +1320,8 @@ pre {
     border-radius: 10px;
 }
 
-.form-label-star{
+.form-label-star {
     color: red;
-}
-
-.form-label-span {
-    font-weight: normal;
 }
 
 .btn {
@@ -1319,7 +1348,6 @@ pre {
     color: #fff;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
-
 
 /* Footer */
 .footer {
