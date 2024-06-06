@@ -1,12 +1,23 @@
+import asyncio
 import json
 import os
 
 from django.conf import settings
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.urls import reverse
+from telegram import Bot
 
 from orders.forms import RepairRequestForm, RequestStatusForm
 from orders.models import RepairRequest, Review, Service
+
+TELEGRAM_BOT_TOKEN = "7410868866:AAHIjhHDcjBBc4VeviZ3oKeqeUVtoHgeNLw"
+TELEGRAM_CHAT_ID = "-1002231195922"
+
+
+async def send_telegram_message(message):
+    bot = Bot(token=TELEGRAM_BOT_TOKEN)
+    await bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=message)
 
 
 def index(request):
@@ -24,6 +35,12 @@ def create_request(request):
         form = RepairRequestForm(request.POST)
         if form.is_valid():
             repair_request = form.save()
+            phone = form.cleaned_data["phone"]
+            asyncio.run(
+                send_telegram_message(
+                    generate_request_message(request, repair_request, phone)
+                )
+            )
             return HttpResponse(
                 status=204,
                 headers={
@@ -36,6 +53,24 @@ def create_request(request):
             )
     form = RepairRequestForm(request.POST or None)
     return render(request, "orders/create_request.html", {"form": form})
+
+
+def generate_request_message(request, repair_request, phone):
+    admin_url = request.build_absolute_uri(
+        reverse("admin:orders_repairrequest_change", args=[repair_request.pk])
+    )
+    model = (
+        "Не указана"
+        if repair_request.model_washer is None
+        else repair_request.model_washer.name
+    )
+    message = (
+        f"У вас новая заявка: {repair_request}\n"
+        f"Телефон указанный в заявке: {phone}\n"
+        f"Модель машинки: {model}\n"
+        f"Более подробно о заявке - {admin_url}"
+    )
+    return message
 
 
 def request_status(request):

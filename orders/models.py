@@ -94,7 +94,7 @@ class RepairRequest(models.Model):
         return f"№{self.pk} {self.name} {self.surname}"
 
     def get_absolute_url(self):
-        return f"/orders/{self.pk}/"
+        return f"/orders/repairrequest/{self.pk}/"
 
 
 class Review(models.Model):
