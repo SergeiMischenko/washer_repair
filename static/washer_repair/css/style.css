@@ -1102,6 +1102,7 @@ table td + td {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 91%;
     margin: 0 auto 50px auto;
 }
@@ -1123,7 +1124,7 @@ table td + td {
     flex-direction: row;
     align-items: center;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #fff;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -1134,11 +1135,11 @@ table td + td {
     width: 50px;
 }
 
-.contacts__avito, .contacts__whatsapp {
+.contacts__avito, .contacts__telegram, .contacts__whatsapp {
     display: flex;
     flex-direction: row;
     align-items: center;
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
     color: #fff;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
@@ -1147,16 +1148,6 @@ table td + td {
 .contacts__avito img {
     margin-right: 20px;
     width: 120px;
-}
-
-.contacts__telegram {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    font-size: 20px;
-    font-weight: bold;
-    color: #fff;
-    text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .contacts__map {
@@ -1237,6 +1228,18 @@ iframe {
     text-shadow: 1px 1px #c60;
 }
 
+.review__block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    margin: 20px auto;
+}
+
+.review__block img {
+    height: 420px;
+}
+
 .comment__content {
     display: flex;
     flex-direction: column;
@@ -1262,6 +1265,47 @@ iframe {
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
 }
 
+.add_review {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 70%;
+    height: 100%;
+    background: linear-gradient(110.94deg, rgba(191, 176, 232, 0.45) 10%, rgba(96, 136, 208, 0.55) 50%, rgba(171, 252, 242, 0.65) 90%);
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    border: solid 3px #f6f2ff9c;
+    font-size: 18px;
+    font-weight: bold;
+    text-shadow: 0 4px 4px rgba(255, 255, 255, 0.69);
+}
+
+.add_review button, .request__status_modal .btn {
+    margin: 0 auto;
+    width: 100%;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+    font-size: 18px;
+    border: solid 3px #f6f2ff9c;
+}
+
+.rating__pic {
+    width: 50%;
+    height: auto;
+    margin: 0 auto;
+}
+
+.rating__pic img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+.review__contact-tel {
+    margin: 0 44px;
+}
+
+.review__contact-map {
+    margin: 0 auto 26px auto;
+}
 
 /* Privacy */
 .privacy-title {
@@ -1270,7 +1314,6 @@ iframe {
     font-weight: bold;
     color: #3b3e93;
     text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
-
 }
 
 .privacy {

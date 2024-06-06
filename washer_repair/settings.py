@@ -25,7 +25,12 @@ SECRET_KEY = "django-insecure-ex1p@mtaszq+$3@%3gvsa77#8%sv26au^)gq^9mcx063k$hz@v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+SITE_URL = "http://localhost:8000"
+
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+]
 
 # Application definition
 
@@ -143,3 +148,15 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 PHONENUMBER_DB_FORMAT = "NATIONAL"
 PHONENUMBER_DEFAULT_FORMAT = "NATIONAL"
 PHONENUMBER_DEFAULT_REGION = "RU"
+
+# Email settings
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_HOST_USER = "orel-tech@yandex.ru"
+EMAIL_HOST_PASSWORD = "dngxmxofcdpozbkd"
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
+
+# Yandex
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
+EMAIL_ADMIN = EMAIL_HOST_USER

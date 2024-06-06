@@ -4,11 +4,11 @@ import os
 
 from django.conf import settings
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from telegram import Bot
 
-from orders.forms import RepairRequestForm, RequestStatusForm
+from orders.forms import AddReviewForm, RepairRequestForm, RequestStatusForm
 from orders.models import RepairRequest, Review, Service
 
 TELEGRAM_BOT_TOKEN = "7410868866:AAHIjhHDcjBBc4VeviZ3oKeqeUVtoHgeNLw"
@@ -17,7 +17,7 @@ TELEGRAM_CHAT_ID = "-1002231195922"
 
 async def send_telegram_message(message):
     bot = Bot(token=TELEGRAM_BOT_TOKEN)
-    await bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=message)
+    await bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=message, parse_mode="HTML")
 
 
 def index(request):
@@ -30,6 +30,20 @@ def feedback(request):
     return render(request, "orders/feedback.html", {"comments": comments})
 
 
+def add_review(request, token):
+    order = get_object_or_404(RepairRequest, token=token)
+    comment = None
+    if request.method == "POST":
+        form = AddReviewForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.order = order
+            comment.save()
+            return redirect("orders:feedback")
+    form = AddReviewForm(initial={"order": order})
+    return render(request, "orders/add_review.html", {"form": form, "order": order})
+
+
 def create_request(request):
     if request.method == "POST":
         form = RepairRequestForm(request.POST)
@@ -38,7 +52,7 @@ def create_request(request):
             phone = form.cleaned_data["phone"]
             asyncio.run(
                 send_telegram_message(
-                    generate_request_message(request, repair_request, phone)
+                    generate_request_message(request, repair_request, phone),
                 )
             )
             return HttpResponse(
@@ -65,10 +79,10 @@ def generate_request_message(request, repair_request, phone):
         else repair_request.model_washer.name
     )
     message = (
-        f"У вас новая заявка: {repair_request}\n"
-        f"Телефон указанный в заявке: {phone}\n"
-        f"Модель машинки: {model}\n"
-        f"Более подробно о заявке - {admin_url}"
+        f"\U00002705 У вас новая заявка: {repair_request}\n"
+        f"\u260E Телефон указанный в заявке: {phone}\n"
+        f"\U0001F9FA Модель машинки: {model}\n"
+        f"\U0001F50D Более подробно о заявке - <a href='{admin_url}'>Тут!</a>"
     )
     return message
 

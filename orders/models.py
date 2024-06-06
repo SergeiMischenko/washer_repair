@@ -1,3 +1,5 @@
+import uuid
+
 from django.core.exceptions import ValidationError
 from django.core.validators import (MaxValueValidator, MinValueValidator,
                                     RegexValidator)
@@ -77,6 +79,7 @@ class RepairRequest(models.Model):
         Service, blank=True, verbose_name="Услуги", related_name="orders"
     )
     description = models.TextField(blank=True, verbose_name="Описание поломки")
+    token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Создано")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Обновлено")
 

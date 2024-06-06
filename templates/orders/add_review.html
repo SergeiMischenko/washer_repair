@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+	{% load widget_tweaks %}
+	{% with WIDGET_ERROR_CLASS='is-invalid' %}
+		<div class="review__block">
+		<img src="{% static "washer_repair/images/svg/line_1.svg" %}" alt="line" class="services__line-pic" loading="lazy">
+		<form method="post" class="add_review modal-content">
+			{% csrf_token %}
+			<div class="modal-header">
+				<h4 class="modal-title">Оставить отзыв для заказа №{{ order.pk }} на
+					имя: {{ order.name }} {{ order.surname }}</h4>
+			</div>
+			<div class="modal-body">
+				{% if error_message %}
+					<div class="alert alert-danger" role="alert">
+						{{ error_message }}
+					</div>
+				{% endif %}
+				{{ form.order }}
+				<div class="mb-3">
+					<label for="{{ form.text.id_for_label }}" class="form-label">Текст отзыва <span
+							class="form-label-star">*</span></label>
+					{% render_field form.text class="form-control" rows="4" type="text" title="Напишите ваш отзыв" %}
+					<div class="invalid-feedback">{{ form.text.errors|first }}</div>
+				</div>
+				<div class="mb-3">
+					<label for="{{ form.rating.id_for_label }}" class="form-label">Оценка <span class="form-label-star">*</span></label>
+					{% render_field form.rating class="form-control"type="number" min="1" max="5" inputmode="numeric" title="Оцените от 1 до 5" %}
+					<div class="invalid-feedback">{{ form.rating.errors|first }}</div>
+				</div>
+				<div>
+					<p><span class="form-label-star">*</span> - обязательные поля</p>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button type="submit" class="btn btn-primary">Отправить</button>
+			</div>
+		</form>
+		<img src="{% static "washer_repair/images/svg/line_1.svg" %}" alt="line" class="services__line-pic" loading="lazy">
+	</div>
+	{% endwith %}
+
+	<section class="contact__tel review__contact-tel" id="contact">
+		<img src="{% static "washer_repair/images/svg/phone.svg" %}" alt="" class="contact__tel-pic" loading="lazy">
+		<a href="tel:+79624806480">
+			<div class="contact__tel-block">
+				<p class="contact__tel-block-text">+7 (962) 480-64-80</p>
+			</div>
+		</a>
+		<img src="{% static "washer_repair/images/svg/line_3.svg" %}" alt="" class="contact__tel-line" loading="lazy">
+	</section>
+
+	<section class="contacts-map review__contact-map">
+		<div class="contacts__block">
+			<a href="mailto:mail@gmail.com" class="contacts__mail">
+				<img src="{% static "washer_repair/images/svg/mail.svg" %}" alt="" class="contacts__mail-pic" loading="lazy">
+				<p class="contacts__mail-text">Email: orel-tech@yandex.ru</p>
+			</a>
+			<a href="https://www.avito.ru/user/fabf5438231fee4a899052f58606ed1a/profile/all/predlozheniya_uslug?src=sharing&sellerId=fabf5438231fee4a899052f58606ed1a"
+			   class="contacts__avito">
+				<img src="{% static "washer_repair/images/svg/avito.svg" %}" alt="" class="contacts__avito-pic" loading="lazy">
+				<p class="contacts__avito-text">Мы на avito</p>
+			</a>
+			<a href="https://t.me/+79624806480" class="contacts__telegram">
+				<img src="{% static "washer_repair/images/svg/telegram.svg" %}" alt="" class="contacts__telegram-pic" loading="lazy">
+				<p class="contacts__telegram-text">Написать в Telegram</p>
+			</a>
+			<a href="https://wa.me/79624806480?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!%20%D0%9C%D0%B5%D0%BD%D1%8F%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82..."
+			   class="contacts__whatsapp">
+				<img src="{% static "washer_repair/images/svg/whatsapp.svg" %}" alt="" class="contacts__whatsapp-pic" loading="lazy">
+				<p class="contacts__whatsapp-text">Написать в Whatsapp</p>
+			</a>
+		</div>
+		<div class="rating__pic">
+			<img src="{% static "washer_repair/images/rating.jpeg" %}" alt="" loading="lazy">
+		</div>
+	</section>
+{% endblock content %}
