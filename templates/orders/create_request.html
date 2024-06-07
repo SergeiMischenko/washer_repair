@@ -1,6 +1,7 @@
 {% load widget_tweaks %}
 {% with WIDGET_ERROR_CLASS='is-invalid' %}
-	<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}' class="create_request_modal modal-content">
+	<form hx-post="{{ request.path }}" hx-headers='{"X-CSRFToken":"{{ csrf_token }}"}'
+	      class="create_request_modal modal-content">
 		<div class="modal-header">
 			<h4 class="modal-title">Оставьте заявку и мы вам перезвоним!</h4>
 			<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -46,6 +47,13 @@
 		<div class="modal-footer">
 			<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
 			<button type="submit" class="btn btn-primary">Отправить</button>
+
 		</div>
+		<div class="modal-footer-privacy">
+			<p>
+				Оставляя заявку, вы соглашаетесь с
+			</p>
+			<a href="{% url 'orders:privacy' %}">Политикой конфиденциальности</a>
+		</div> 
 	</form>
 {% endwith %}

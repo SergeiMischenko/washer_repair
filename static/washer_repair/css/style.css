@@ -1341,6 +1341,27 @@ pre {
     background: linear-gradient(110.94deg, rgb(195 182 231) 10%, rgb(195 215 255) 50%, rgb(219 219 219) 90%);
 }
 
+.modal-footer-privacy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 15px;
+    font-weight: bold;
+    color: #838383c9;
+    text-shadow: 0 4px 4px rgb(172 199 231 / 98%);
+    padding-bottom: 12px;
+}
+
+.modal-footer-privacy a {
+    color: #838383c9;
+
+    &:hover {
+        color: #7458b9;
+    }
+}
+
 .request__status_modal {
     background: linear-gradient(110.94deg, rgb(219 219 219) 10%, rgb(195 215 255) 50%, rgb(195 182 231) 90%);
 }
