@@ -19,39 +19,48 @@
 	{% block menu %}
 		<header class="header">
 			<a href="{% url 'orders:index' %}" class="header__logo-link">
+				<span class="visually-hidden">Логотип orel-tech</span>
 				<img src="{% static "washer_repair/images/svg/logo.svg" %}" width="50" height="50"
 				     alt="Ремонт стиральных машин в Орле"
 				     class="header__logo-pic" loading="lazy">
 			</a>
-			<nav class="header__menu">
-				<ul class="header__menu-list">
-					<li class="header__menu-item">
-						<a href="{% url 'orders:index' %}#services" class="header__menu-link">Цены</a>
-					</li>
-					<li class="header__menu-item">
-						<a href="{% url 'orders:index' %}#about" class="header__menu-link">О нас</a>
-					</li>
-					<li class="header__menu-item">
-						<a href="{% url 'orders:index' %}#contact" class="header__menu-link">Контакты</a>
-					</li>
-					<li class="header__menu-item">
-						<a href="{% url "orders:feedback" %}" class="header__menu-link">Отзывы</a>
-					</li>
+			<div class="wrapper__header">
+				<nav class="header__menu">
+					<ul class="header__menu-list">
+						<li class="header__menu-item">
+							<a href="{% url 'orders:index' %}#services" class="header__menu-link">Цены</a>
+						</li>
+						<li class="header__menu-item">
+							<a href="{% url 'orders:index' %}#about" class="header__menu-link">О нас</a>
+						</li>
+						<li class="header__menu-item">
+							<a href="{% url 'orders:index' %}#contact" class="header__menu-link">Контакты</a>
+						</li>
+						<li class="header__menu-item">
+							<a href="{% url "orders:feedback" %}" class="header__menu-link">Отзывы</a>
+						</li>
+						<li class="header__menu-item">
 
-					<li class="header__menu-item">
-						<button class="header__menu-link" hx-get="{% url 'orders:request_status' %}"
-						        hx-target="#dialog">
-							Моя заявка
-						</button>
-					</li>
-					<li class="header__menu-item">
-						<button class="header__menu-link-last" hx-get="{% url 'orders:create_request' %}"
-						        hx-target="#dialog">
-							Оставить заявку
-						</button>
-					</li>
-				</ul>
-			</nav>
+							<button type="button" class="header__menu-link" hx-get="{% url 'orders:request_status' %}"
+							        hx-target="#dialog">
+								<span class="visually-hidden">Кнопка для просмотра статуса заявки</span>
+								Моя заявка
+							</button>
+						</li>
+
+					</ul>
+				</nav>
+				<button type="button" class="header__menu-link-last" hx-get="{% url 'orders:create_request' %}"
+				        hx-target="#dialog">
+					<span class="visually-hidden">Кнопка оставить заявку</span>
+					Оставить заявку
+				</button>
+			</div>
+			<div class="burger">
+				<span class="visually-hidden">Открыть меню</span>
+				<span></span>
+			</div>
+
 			<div class="toast-container position-fixed top-0 start-50 translate-middle-x p-3">
 				<div id="toast" class="toast align-items-center text-white fs-5 bg-success border-0" role="alert"
 				     aria-live="assertive"
@@ -64,7 +73,6 @@
 				</div>
 			</div>
 		</header>
-
 	{% endblock menu %}
 
 	{% block header %}
@@ -96,13 +104,12 @@
 </div>
 
 <div id="modal" class="modal fade">
-	<div id="dialog" class="modal-dialog modal-dialog-centered modal-dialog-scrollable justify-content-center"
+	<div id="dialog" class="modal-dialog modal-dialog-centered justify-content-center"
 	     hx-target="this"></div>
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="https://unpkg.com/htmx.org@1.6.1/dist/htmx.min.js"></script>
-<script src="{% static 'washer_repair/js/dialog.js' %}"></script>
-<script src="{% static 'washer_repair/js/toast.js' %}"></script>
+<script src="{% static 'washer_repair/js/scripts.js' %}"></script>
 </body>
 </html>

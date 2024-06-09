@@ -8,20 +8,22 @@
 			</h1>
 			<br>
 			<div class="title__wrapper">
-			<ul class="title__text-list">
-				<li class="title__text-item">Ремонт стиральных машин с выездом на дом</li>
-				<li class="title__text-item">Замена подшипников производится в <span>мастерской</span></li>
-				<li class="title__text-item">Диагноcтика 300 руб. <span>(Беcплатнo в cлучае peмoнтa)</span></li>
-				<li class="title__text-item">Пенсионерам скидка <span>20%</span> от стоимости общего ремонта
-				</li>
-				<li class="title__text-item">Пpeдоставляeтся гapантия</li>
-				<br>
-				<li class="title__text-item title__text-item-last">Выкупим вашу нерабочую технику, на запчасти!</li>
-			</ul>
-			<img src="{% static "washer_repair/images/washer_1.png" %}" width="560" height="500" alt="Стиральная машина"
-		     class="title-pic" loading="lazy"></div>
+				<ul class="title__text-list">
+					<li class="title__text-item">Ремонт стиральных машин с выездом на дом</li>
+					<li class="title__text-item">Замена подшипников производится в <span>мастерской</span></li>
+					<li class="title__text-item">Диагноcтика 300 руб. <span>(Беcплатнo в cлучае peмoнтa)</span></li>
+					<li class="title__text-item">Пенсионерам скидка <span>20%</span> от стоимости общего ремонта
+					</li>
+					<li class="title__text-item">Пpeдоставляeтся гapантия</li>
+					<br>
+					<li class="title__text-item title__text-item-last">Выкупим вашу нерабочую технику, на запчасти!</li>
+				</ul>
+				<img src="{% static "washer_repair/images/washer_1.png" %}" width="400" height="450"
+				     alt="Стиральная машина"
+				     class="title-pic" loading="lazy">
+			</div>
 		</div>
-		
+
 	</section>
 {% endblock header %}
 {% block content %}
@@ -35,8 +37,8 @@
 			<img src="{% static "washer_repair/images/svg/line_1.svg" %}" alt="line" class="services__line-pic"
 			     loading="lazy">
 			<div class="services__block">
+				<h2 class="visually-hidden">Список услуг и их стоимость</h2>
 				<div class="services__block-inside">
-
 					<div class="services__title">
 						<div class="services__service">
 							<p class="services__service-text">
@@ -49,7 +51,6 @@
 							</p>
 						</div>
 					</div>
-
 					<div class="services__service-block">
 						<table class="services__table">
 							<tbody>
@@ -70,7 +71,6 @@
 							</tbody>
 						</table>
 					</div>
-
 				</div>
 			</div>
 			<img src="{% static "washer_repair/images/svg/line_1.svg" %}" alt="line" class="services__line-pic"
@@ -89,9 +89,9 @@
 
 				<div class="about__content-wrapper">
 					<div class="about__content-title">
-						<h2 class="content-title-text">
+						<h3 class="content-title-text">
 							Этапы работы
-						</h2>
+						</h3>
 					</div>
 
 					<img src="{% static "washer_repair/images/svg/line_2.svg" %}" alt="line" class="about__line-pic"

@@ -30,7 +30,9 @@
 						{% else %}
 							<td>---</td>
 						{% endif %}
-						<td>{{ request_st.updated_at }}</td>
+						<td>
+							<time datetime="{{ request_st.updated_at|date:"c" }}">{{ request_st.updated_at }}</time>
+						</td>
 					</tr>
 				{% endfor %}
 				</tbody>
