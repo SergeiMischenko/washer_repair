@@ -28,9 +28,12 @@ DEBUG = True
 SITE_URL = "http://localhost:8000"
 
 ALLOWED_HOSTS = [
+    '*',
     "127.0.0.1",
     "localhost",
 ]
+
+CSRF_TRUSTED_ORIGINS = ['https://4028-193-34-225-189.ngrok-free.app']
 
 # Application definition
 
