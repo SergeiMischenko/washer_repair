@@ -5,8 +5,7 @@
 	{% load widget_tweaks %}
 	{% with WIDGET_ERROR_CLASS='is-invalid' %}
 		<div class="review__block">
-			<img src="{% static "washer_repair/images/svg/line_1.svg" %}" alt="line" class="services__line-pic"
-			     loading="lazy">
+			<div class="vertical-line review__vertical-line"></div>
 			<form method="post" class="add_review modal-content">
 				{% csrf_token %}
 				<div class="modal-header">
@@ -40,43 +39,47 @@
 					<button type="submit" class="btn btn-primary">Отправить</button>
 				</div>
 			</form>
-			<img src="{% static "washer_repair/images/svg/line_1.svg" %}" alt="line" class="services__line-pic"
-			     loading="lazy">
+			<div class="vertical-line review__vertical-line"></div>
 		</div>
 	{% endwith %}
 
-	<section class="contact__tel review__contact-tel" id="contact">
-		<img src="{% static "washer_repair/images/svg/phone.svg" %}" alt="" class="contact__tel-pic" loading="lazy">
-		<a href="tel:+79624806480">
-			<div class="contact__tel-block">
+	<section class="contact__tel" id="contact">
+		<img src="{% static "washer_repair/images/svg/phone.svg" %}" width="60" height="60" alt="phone"
+		     class="contact__tel-pic" loading="lazy">
+
+		<div class="contact__tel-block">
+			<a href="tel:+79624806480">
 				<p class="contact__tel-block-text">+7 (962) 480-64-80</p>
-			</div>
-		</a>
-		<img src="{% static "washer_repair/images/svg/line_3.svg" %}" alt="" class="contact__tel-line" loading="lazy">
+			</a>
+		</div>
+		<div class="horizontal-line contact__horizontal-line"></div>
 	</section>
 
-	<section class="contacts-map review__contact-map">
+	<section class="contacts-map">
 		<div class="contacts__block">
 			<a href="mailto:mail@gmail.com" class="contacts__mail">
-				<img src="{% static "washer_repair/images/svg/mail.svg" %}" alt="" class="contacts__mail-pic"
+				<img src="{% static "washer_repair/images/svg/mail.svg" %}" width="50" height="50" alt="mail-pic"
+				     class="contacts__mail-pic"
 				     loading="lazy">
 				<p class="contacts__mail-text">Email: orel-tech@yandex.ru</p>
 			</a>
 			<a href="https://www.avito.ru/user/fabf5438231fee4a899052f58606ed1a/profile/all/predlozheniya_uslug?src=sharing&sellerId=fabf5438231fee4a899052f58606ed1a"
 			   class="contacts__avito">
-				<img src="{% static "washer_repair/images/svg/avito.svg" %}" alt="" class="contacts__avito-pic"
+				<img src="{% static "washer_repair/images/svg/avito.svg" %}" width="120" height="40" alt="avito-pic"
+				     class="contacts__avito-pic"
 				     loading="lazy">
 				<p class="contacts__avito-text">Мы на avito</p>
 			</a>
 			<a href="https://t.me/+79624806480" class="contacts__telegram">
-				<img src="{% static "washer_repair/images/svg/telegram.svg" %}" alt="" class="contacts__telegram-pic"
-				     loading="lazy">
+				<img src="{% static "washer_repair/images/svg/telegram.svg" %}" width="50" height="50"
+				     alt="telegram-pic"
+				     class="contacts__telegram-pic" loading="lazy">
 				<p class="contacts__telegram-text">Написать в Telegram</p>
 			</a>
 			<a href="https://wa.me/79624806480?text=%D0%9F%D1%80%D0%B8%D0%B2%D0%B5%D1%82!%20%D0%9C%D0%B5%D0%BD%D1%8F%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D0%B5%D1%81%D1%83%D0%B5%D1%82..."
 			   class="contacts__whatsapp">
-				<img src="{% static "washer_repair/images/svg/whatsapp.svg" %}" alt="" class="contacts__whatsapp-pic"
-				     loading="lazy">
+				<img src="{% static "washer_repair/images/svg/whatsapp.svg" %}" width="50" height="50"
+				     alt="whatsapp-pic" class="contacts__whatsapp-pic" loading="lazy">
 				<p class="contacts__whatsapp-text">Написать в Whatsapp</p>
 			</a>
 		</div>
