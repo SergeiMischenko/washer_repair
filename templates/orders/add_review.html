@@ -5,7 +5,6 @@
 	{% load widget_tweaks %}
 	{% with WIDGET_ERROR_CLASS='is-invalid' %}
 		<div class="review__block">
-			<div class="vertical-line review__vertical-line"></div>
 			<form method="post" class="add_review modal-content">
 				{% csrf_token %}
 				<div class="modal-header">
@@ -39,7 +38,6 @@
 					<button type="submit" class="btn btn-primary">Отправить</button>
 				</div>
 			</form>
-			<div class="vertical-line review__vertical-line"></div>
 		</div>
 	{% endwith %}
 
