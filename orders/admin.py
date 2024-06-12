@@ -3,7 +3,25 @@ from django.contrib import admin
 from django.urls import reverse
 from django.utils.html import format_html
 
-from orders.models import RepairRequest, Review, Service, WasherModel
+from orders.models import Master, RepairRequest, Review, Service, WasherModel
+
+
+@admin.register(Master)
+class MasterAdmin(admin.ModelAdmin):
+    list_display = [
+        "name",
+        "surname",
+        "phone",
+        "email",
+        "work_experience",
+        "qualification",
+        "order_count",
+    ]
+
+    def order_count(self, obj):
+        return obj.orders.count()
+
+    order_count.short_description = "Количество заказов"
 
 
 @admin.register(WasherModel)
@@ -32,6 +50,7 @@ class RepairRequestAdmin(admin.ModelAdmin):
         "full_name",
         "phone",
         "email",
+        "master",
         "model_washer",
         "status",
         "created_at",
@@ -39,10 +58,10 @@ class RepairRequestAdmin(admin.ModelAdmin):
     ]
     list_display_links = ["id", "full_name"]
     date_hierarchy = "created_at"
-    list_editable = ["status"]
+    list_editable = ["status", "master"]
     radio_fields = {"model_washer": admin.HORIZONTAL}
     search_fields = ["id", "name", "surname", "phone", "email"]
-    list_filter = ["status", "model_washer"]
+    list_filter = ["status", "model_washer", "master"]
     ordering = ["-created_at"]
     inlines = [ReviewInline]
 

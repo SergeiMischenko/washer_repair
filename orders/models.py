@@ -6,6 +6,41 @@ from django.core.validators import (MaxValueValidator, MinValueValidator,
 from django.db import models
 
 
+class Person(models.Model):
+    name = models.CharField(max_length=100, verbose_name="Имя")
+    surname = models.CharField(max_length=100, verbose_name="Фамилия")
+    phone_regex = RegexValidator(
+        regex=r"^\+?1?\d{8,15}$", message="Формат номера: +1234567890"
+    )
+    phone = models.CharField(
+        validators=[phone_regex], max_length=16, verbose_name="Телефон"
+    )
+    email = models.EmailField(blank=True, verbose_name="E-mail")
+
+    class Meta:
+        abstract = True
+
+
+class Master(Person):
+    work_experience = models.PositiveIntegerField(
+        null=True,
+        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        verbose_name="Опыт работы (лет)",
+    )
+    qualification = models.CharField(
+        null=True, max_length=255, verbose_name="Квалификация"
+    )
+
+    class Meta:
+        verbose_name = "Мастер"
+        verbose_name_plural = "Мастера"
+        ordering = ["name"]
+        indexes = [models.Index(fields=["name"])]
+
+    def __str__(self):
+        return f"{self.name} {self.surname}"
+
+
 class WasherModel(models.Model):
     name = models.CharField(max_length=100, verbose_name="Модель стиральной машины")
 
@@ -43,7 +78,7 @@ class Service(models.Model):
         return f"{self.name} - {self.price} руб."
 
 
-class RepairRequest(models.Model):
+class RepairRequest(Person):
     STATUS_CHOICES = (
         ("Принято в обработку", "Принято в обработку"),
         ("В ожидании запчастей", "В ожидании запчастей"),
@@ -52,20 +87,19 @@ class RepairRequest(models.Model):
         ("Готово к выдаче", "Готово к выдаче"),
         ("Заявка закрыта", "Заявка закрыта"),
     )
-    name = models.CharField(max_length=100, verbose_name="Имя")
-    surname = models.CharField(max_length=100, verbose_name="Фамилия")
-    phone_regex = RegexValidator(
-        regex=r"^\+?1?\d{8,15}$", message="Формат номера: +1234567890"
-    )
-    phone = models.CharField(
-        validators=[phone_regex], max_length=16, verbose_name="Телефон"
-    )
-    email = models.EmailField(max_length=100, blank=True, verbose_name="Email")
     status = models.CharField(
         max_length=100,
         choices=STATUS_CHOICES,
         default="Принято в обработку",
         verbose_name="Статус",
+    )
+    master = models.ForeignKey(
+        Master,
+        on_delete=models.CASCADE,
+        blank=True,
+        null=True,
+        related_name="orders",
+        verbose_name="Мастер",
     )
     model_washer = models.ForeignKey(
         WasherModel,
