@@ -300,6 +300,25 @@ h1, h2, h3, h4, h5, h6 {
     background: var(--color-light-blue);
 }
 
+@keyframes glowing {
+    0% {
+        background-color: var(--color-light-blue);
+        box-shadow: 0 0 5px var(--color-light-blue);
+    }
+    50% {
+        background-color: var(--color-light);
+        box-shadow: 0 0 20px var(--color-light);
+    }
+    100% {
+        background-color: var(--color-light-blue);
+        box-shadow: 0 0 5px var(--color-light-blue);
+    }
+}
+
+.header__menu-link-last {
+    animation: glowing 1300ms infinite;
+}
+
 .header__menu-link:hover, .header__menu-link:focus, .header__menu-link-last:hover, .header__menu-link-last:focus {
     background: var(--gradient-blue-reverse);
     box-shadow: var(--box-shadow-light);
@@ -308,6 +327,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .header__menu-link-last:hover, .header__menu-link-last:focus {
+    color: var(--color-black);
     background: var(--color-green);
 }
 
