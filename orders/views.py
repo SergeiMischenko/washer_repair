@@ -11,13 +11,12 @@ from telegram import Bot
 from orders.forms import AddReviewForm, RepairRequestForm, RequestStatusForm
 from orders.models import RepairRequest, Review, Service
 
-TELEGRAM_BOT_TOKEN = "7410868866:AAHIjhHDcjBBc4VeviZ3oKeqeUVtoHgeNLw"
-TELEGRAM_CHAT_ID = "-1002231195922"
-
 
 async def send_telegram_message(message):
-    bot = Bot(token=TELEGRAM_BOT_TOKEN)
-    await bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=message, parse_mode="HTML")
+    bot = Bot(token=settings.TELEGRAM_BOT_TOKEN)
+    await bot.send_message(
+        chat_id=settings.TELEGRAM_CHAT_ID, text=message, parse_mode="HTML"
+    )
 
 
 def index(request):
@@ -79,7 +78,7 @@ def generate_request_message(request, repair_request, phone, repeated_phone):
     )
     admin_url_search = (
         request.build_absolute_uri(
-            reverse("admin:orders_repairrequest_changelist") + f"?q={phone[-8:]}"
+            reverse("admin:orders_repairrequest_changelist") + f"?q={phone[1:]}"
         )
         if repeated_phone
         else ""
