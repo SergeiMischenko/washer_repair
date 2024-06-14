@@ -93,15 +93,13 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = "ru-ru"
-
-TIME_ZONE = "Europe/Moscow"
-
-USE_I18N = True
-
-USE_TZ = True
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# Internationalization
+LANGUAGE_CODE = "ru-ru"
+TIME_ZONE = "Europe/Moscow"
+USE_I18N = True
+USE_TZ = True
 
 # Static and media
 STATIC_URL = "/static/"
@@ -124,12 +122,12 @@ EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
 EMAIL_PORT = env.int("EMAIL_PORT")
 EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL")
 
-# Yandex
+# Yandex mail settings
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 SERVER_EMAIL = EMAIL_HOST_USER
 EMAIL_ADMIN = EMAIL_HOST_USER
 
-# CorseHeaders
+# CorsHeaders
 CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ["*"]
