@@ -65,19 +65,26 @@ class ReviewAdmin(admin.ModelAdmin):
 @admin.register(Master)
 class MasterAdmin(admin.ModelAdmin):
     list_display = [
-        "name",
-        "surname",
+        "full_name",
         "phone",
         "email",
         "work_experience",
         "qualification",
-        "orders_count",
+        "orders_link",
     ]
+    list_display_links = ["full_name", "orders_link"]
 
-    def orders_count(self, obj):
-        return obj.orders_count
+    @admin.display(description="ФИО")
+    def full_name(self, obj):
+        return f"{obj.name} {obj.surname}"
 
-    orders_count.short_description = "Количество заказов"
+    @admin.display(description="Количество заказов")
+    def orders_link(self, obj):
+        url = (
+            reverse("admin:orders_repairrequest_changelist")
+            + f"?master__id__exact={obj.pk}"
+        )
+        return format_html('<a href="{}">{}</a>', url, obj.orders_count)
 
     def get_queryset(self, request):
         queryset = Master.objects.all().annotate(orders_count=Count("orders"))
