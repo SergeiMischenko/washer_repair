@@ -60,7 +60,9 @@ class WasherModel(models.Model):
 
 class Service(models.Model):
     name = models.CharField(max_length=255, verbose_name="Услуга")
-    price = models.PositiveSmallIntegerField(verbose_name="Цена",)
+    price = models.PositiveSmallIntegerField(
+        verbose_name="Цена",
+    )
 
     class Meta:
         verbose_name = "Услуга"
@@ -101,7 +103,7 @@ class RepairRequest(Person):
         blank=True,
         null=True,
         related_name="orders",
-        verbose_name="Модель",
+        verbose_name="Модель машинки",
     )
     services = models.ManyToManyField(
         Service, blank=True, verbose_name="Услуги", related_name="orders"

@@ -30,9 +30,15 @@ INSTALLED_APPS = [
     "phonenumber_field",
     "widget_tweaks",
     "corsheaders",
+    "debug_toolbar",
+]
+
+INTERNAL_IPS = [
+    "127.0.0.1",
 ]
 
 MIDDLEWARE = [
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "corsheaders.middleware.CorsMiddleware",

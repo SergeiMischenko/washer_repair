@@ -25,7 +25,7 @@ def index(request):
 
 
 def feedback(request):
-    comments = Review.objects.all()
+    comments = Review.objects.all().select_related("order")
     return render(request, "orders/feedback.html", {"comments": comments})
 
 
@@ -110,7 +110,7 @@ def request_status(request):
             phone = form.cleaned_data["phone"]
             requests = RepairRequest.objects.filter(
                 surname__iexact=surname, phone__icontains=phone
-            )
+            ).select_related("model_washer")
             if requests.exists():
                 name = requests[0].name
                 phone = requests[0].phone
