@@ -22,9 +22,9 @@ class Person(models.Model):
 
 
 class Master(Person):
-    work_experience = models.PositiveIntegerField(
+    work_experience = models.PositiveSmallIntegerField(
         null=True,
-        validators=[MinValueValidator(0), MaxValueValidator(100)],
+        validators=[MaxValueValidator(100)],
         verbose_name="Опыт работы (лет)",
     )
     qualification = models.CharField(
@@ -60,13 +60,7 @@ class WasherModel(models.Model):
 
 class Service(models.Model):
     name = models.CharField(max_length=255, verbose_name="Услуга")
-    price = models.PositiveIntegerField(
-        validators=[
-            MinValueValidator(0),
-            MaxValueValidator(100000),
-        ],
-        verbose_name="Цена",
-    )
+    price = models.PositiveSmallIntegerField(verbose_name="Цена",)
 
     class Meta:
         verbose_name = "Услуга"
@@ -142,7 +136,7 @@ class Review(models.Model):
         verbose_name="Заявка",
     )
     text = models.TextField(verbose_name="Текст отзыва")
-    rating = models.IntegerField(
+    rating = models.PositiveSmallIntegerField(
         validators=[MinValueValidator(1), MaxValueValidator(5)], verbose_name="Рейтинг"
     )
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Создано")
