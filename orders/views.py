@@ -113,6 +113,7 @@ def request_status(request):
             ).select_related("model_washer")
             if requests.exists():
                 name = requests[0].name
+                surname = requests[0].surname
                 phone = requests[0].phone
                 return render(
                     request,
