@@ -27,11 +27,12 @@ class RepairRequestAdmin(admin.ModelAdmin):
         "updated_at",
     ]
     list_display_links = ["id", "full_name"]
+    list_editable = ["status", "master"]
+    list_filter = ["status", "master", "model_washer"]
+    autocomplete_fields = ["master", "model_washer"]
     date_hierarchy = "created_at"
-    list_editable = ["status"]
-    search_fields = ["id", "name", "surname", "phone", "email"]
-    list_filter = ["status", "model_washer", "master"]
-    ordering = ["-created_at"]
+    search_fields = ["name", "surname", "phone", "email"]
+    filter_horizontal = ["services"]
     inlines = [ReviewInline]
 
     @admin.display(description="ФИО")
@@ -40,7 +41,7 @@ class RepairRequestAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.select_related("master", "model_washer")
+        return queryset.prefetch_related("master", "model_washer")
 
 
 @admin.register(Review)
@@ -50,7 +51,7 @@ class ReviewAdmin(admin.ModelAdmin):
     list_filter = ["rating"]
     search_fields = ["order__name", "order__surname"]
     date_hierarchy = "created_at"
-    ordering = ["-created_at"]
+    list_select_related = ["order"]
 
     @admin.display(description="Заявка")
     def order_link(self, obj):
@@ -59,7 +60,7 @@ class ReviewAdmin(admin.ModelAdmin):
 
     def get_queryset(self, request):
         queryset = super().get_queryset(request)
-        return queryset.select_related("order")
+        return queryset
 
 
 @admin.register(Master)
@@ -73,6 +74,7 @@ class MasterAdmin(admin.ModelAdmin):
         "orders_link",
     ]
     list_display_links = ["full_name", "orders_link"]
+    search_fields = ["name", "surname"]
 
     @admin.display(description="ФИО")
     def full_name(self, obj):
@@ -81,8 +83,8 @@ class MasterAdmin(admin.ModelAdmin):
     @admin.display(description="Количество заказов")
     def orders_link(self, obj):
         url = (
-            reverse("admin:orders_repairrequest_changelist")
-            + f"?master__id__exact={obj.pk}"
+                reverse("admin:orders_repairrequest_changelist")
+                + f"?master__id__exact={obj.pk}"
         )
         return format_html('<a href="{}">{}</a>', url, obj.orders_count)
 
@@ -100,9 +102,8 @@ class WasherModelAdmin(admin.ModelAdmin):
 @admin.register(Service)
 class ServiceAdmin(admin.ModelAdmin):
     list_display = ["id", "name", "price"]
-    search_fields = ["name", "price"]
     list_editable = ["name", "price"]
-    ordering = ["name"]
+    search_fields = ["name", "price"]
 
 
 admin.site.site_title = "Моя админка"

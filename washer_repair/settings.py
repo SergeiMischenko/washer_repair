@@ -5,16 +5,17 @@ import environ
 
 root = environ.Path(__file__) - 2
 env = environ.Env()
-environ.Env.read_env(env.str(root(), ".env"))
+environ.Env.read_env(env.str(root(), "./docker/env/.env.dev"))
 
 BASE_DIR = root()
 
 SECRET_KEY = env.str("SECRET_KEY")
-DEBUG = env.bool("DEBUG", default=False)
-ALLOWED_HOSTS = env.str("ALLOWED_HOSTS", default="").split(" ")
 
-SITE_URL = env.str("SITE_URL")
-CSRF_TRUSTED_ORIGINS = env.str("CSRF_TRUSTED_ORIGINS").split(" ")
+DEBUG = bool(env("DEBUG", default=False))
+ALLOWED_HOSTS = env("ALLOWED_HOSTS", default="").split()
+INTERNAL_IPS = env("ALLOWED_HOSTS", default="").split()
+SITE_URL = env("SITE_URL", default="orel.tech.ru")
+CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split()
 
 TELEGRAM_BOT_TOKEN = env.str("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = env.str("TELEGRAM_CHAT_ID")
@@ -31,10 +32,6 @@ INSTALLED_APPS = [
     "widget_tweaks",
     "corsheaders",
     "debug_toolbar",
-]
-
-INTERNAL_IPS = [
-    "127.0.0.1",
 ]
 
 MIDDLEWARE = [
@@ -72,15 +69,15 @@ WSGI_APPLICATION = "washer_repair.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": env.str("PG_DATABASE", "postgres"),
-        "USER": env.str("PG_USER", "postgres"),
-        "PASSWORD": env.str("PG_PASSWORD", "postgres"),
-        "HOST": env.str("DB_HOST", "localhost"),
-        "PORT": env.int("DB_PORT", 5432),
+        "NAME": env.str("POSTGRES_DB", "washer_repair_db"),
+        "USER": env.str("POSTGRES_USER", "postgres"),
+        "PASSWORD": env.str("POSTGRES_PASSWORD", "postgres"),
+        "HOST": env.str("POSTGRES_HOST", "localhost"),
+        "PORT": env.int("POSTGRES_PORT", 5432),
     },
     "extra": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+        "NAME": BASE_DIR + "db.sqlite3"
     },
 }
 
@@ -110,11 +107,11 @@ USE_TZ = True
 # Static and media
 STATIC_URL = "/static/"
 if DEBUG:
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, "static/"),)
+    STATICFILES_DIRS = (BASE_DIR + "/static/"),
 else:
-    STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+    STATIC_ROOT = (BASE_DIR + "/static/"),
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+MEDIA_ROOT = (BASE_DIR + "/media/"),
 
 # Phone number settings
 PHONENUMBER_DB_FORMAT = "NATIONAL"

@@ -1,22 +1,27 @@
-FROM python:3.12.3-slim
-
-SHELL ["/bin/bash", "-c"]
+FROM python:3.12-alpine
 
 # set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1
 
+# Устанавливаем обновления и необходимые модули
+RUN apk update && apk add libpq
+RUN apk add --virtual .build-deps gcc python3-dev musl-dev postgresql-dev
+
+# Обновление pip python
 RUN pip install --upgrade pip
+
+# Установка пакетов для проекта
+COPY requirements.txt ./requirements.txt
+RUN pip install -r requirements.txt
 
 WORKDIR /app
 
-RUN mkdir /app/static && mkdir /app/media
+# Удаляем зависимости билда
+RUN apk del .build-deps
 
+# Копирование проекта
 COPY . .
 
-RUN pip install -r requirements.txt
-
-RUN python manage.py migrate
-RUN python manage.py collectstatic --noinput
-
-CMD ["gunicorn", "-b", "0.0.0.0:8000", "washer_repair.wsgi:application"]
+# Настройка записи и доступа
+RUN chmod -R 777 ./

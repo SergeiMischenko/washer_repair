@@ -105,10 +105,10 @@ class RepairRequest(Person):
         related_name="orders",
         verbose_name="Модель машинки",
     )
+    description = models.TextField(blank=True, verbose_name="Описание поломки")
     services = models.ManyToManyField(
         Service, blank=True, verbose_name="Услуги", related_name="orders"
     )
-    description = models.TextField(blank=True, verbose_name="Описание поломки")
     token = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
     created_at = models.DateTimeField(auto_now_add=True, verbose_name="Создано")
     updated_at = models.DateTimeField(auto_now=True, verbose_name="Обновлено")
@@ -120,8 +120,9 @@ class RepairRequest(Person):
             models.Index(fields=["-created_at"]),
             models.Index(fields=["-updated_at"]),
             models.Index(fields=["status"]),
+            models.Index(fields=["master"]),
         ]
-        ordering = ["-updated_at"]
+        ordering = ["-created_at"]
 
     def __str__(self):
         return f"№{self.pk} {self.name} {self.surname}"
