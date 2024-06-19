@@ -49,6 +49,10 @@ services:
       - pgdata:/var/lib/postgresql/data/
 
 
+# Собрать образ
+# docker compose -f docker-compose.dev.yml build
+# docker compose -f docker-compose.dev.yml up
+
 # Сделать loaddata для django
 # docker exec -it django bash
 # python manage.py loaddata data.json &&

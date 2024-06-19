@@ -83,8 +83,8 @@ class MasterAdmin(admin.ModelAdmin):
     @admin.display(description="Количество заказов")
     def orders_link(self, obj):
         url = (
-                reverse("admin:orders_repairrequest_changelist")
-                + f"?master__id__exact={obj.pk}"
+            reverse("admin:orders_repairrequest_changelist")
+            + f"?master__id__exact={obj.pk}"
         )
         return format_html('<a href="{}">{}</a>', url, obj.orders_count)
 
