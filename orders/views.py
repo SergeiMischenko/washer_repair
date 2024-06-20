@@ -184,7 +184,7 @@ def privacy(request):
     :param request: Объект запроса.
     :return: HTML страница с текстом политики конфиденциальности.
     """
-    file_path = os.path.join(settings.BASE_DIR, "static", "privacy.txt")
+    file_path = os.path.join(settings.BASE_DIR, "static/", "privacy.txt")
     with open(file_path, "r", encoding="utf-8") as file:
         policy_text = file.read()
     return render(request, "washer_repair/privacy.html", {"policy_text": policy_text})
