@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'django.contrib.sitemaps',
     "orders.apps.OrdersConfig",
     "phonenumber_field",
     "widget_tweaks",
@@ -107,7 +108,6 @@ STATIC_URL = "static/"
 #     STATICFILES_DIRS = (BASE_DIR + "/static/",)
 # else:
 STATIC_ROOT = (BASE_DIR + "/static/")
-print(STATIC_ROOT)
 MEDIA_URL = "media/"
 MEDIA_ROOT = ((BASE_DIR + "/media/"),)
 
