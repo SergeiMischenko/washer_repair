@@ -43,6 +43,9 @@ urlpatterns = [
     ),
 ]
 
+handler404 = "orders.views.page_not_found"
+handler500 = "orders.views.server_error"
+
 if settings.DEBUG:
     urlpatterns += [
         path("__debug__/", include("debug_toolbar.urls")),
