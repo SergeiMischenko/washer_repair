@@ -188,3 +188,11 @@ def privacy(request):
     with open(file_path, "r", encoding="utf-8") as file:
         policy_text = file.read()
     return render(request, "washer_repair/privacy.html", {"policy_text": policy_text})
+
+
+def page_not_found(request, exception):
+    return render(request, "errors/404.html", status=404)
+
+
+def server_error(request):
+    return render(request, "errors/500.html", status=500)

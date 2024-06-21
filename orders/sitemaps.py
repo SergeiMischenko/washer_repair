@@ -3,13 +3,14 @@ import uuid
 from django.contrib.sitemaps import Sitemap
 from django.urls import reverse
 
-from .models import RepairRequest, Review, Service, WasherModel
-
 
 class StaticSitemap(Sitemap):
     """
     Карта-сайта для статичных страниц и примерной страницы с токеном
     """
+
+    changefreq = "weekly"
+    priority = 0.9
 
     def items(self):
         return [

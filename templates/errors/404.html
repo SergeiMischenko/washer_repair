@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>Ошибка 404. Страница не найдена</title>{% endblock title %}
+{% block content %}
+	<div class="error">
+	<div class="error-text">
+		<h1 class="error404">Такой страницы нe существует.</h1>
+		<h3 class="error404">Одно из двух: или кто-то её удалил, или в ссылке опечатка.</h3>
+	</div>
+	<img src="{% static "errors/404.svg" %}" width="512" height="512"
+	     alt="Ошибка 404. Страница не найдена"
+	     class="error404-pic" loading="lazy">
+	</div>
+{% endblock content %}

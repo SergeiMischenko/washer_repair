@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}<title>Ошибка 500. Internal Server Error</title>{% endblock title %}
+{% block content %}
+	<div class="error">
+	<div class="error-text">
+		<h1 class="error500">Ошибка сервера.</h1>
+		<h3 class="error500">На сервере произошла непредвиденная ошибка. Пожалуйста, подождите: она вскоре будет исправлена.</h3>
+		<br>
+		<h3 class="error500">Попробуйте <a href="{% url 'orders:index' %}">вернуться на главную страницу.</a></h3>
+	</div>
+	<img src="{% static "errors/500.svg" %}" width="512" height="512"
+	     alt="Ошибка 500. Internal Server Error"
+	     class="error500-pic" loading="lazy">
+	</div>
+{% endblock content %}

@@ -4,6 +4,9 @@ Disallow: /*.ppt
 Disallow: /*.doc
 Disallow: /*.xls
 Disallow: /*.txt
+Allow: /feedback
+Disallow: /admin
+Disallow: /privacy
 
 User-agent: Yandex
 Allow: /feedback

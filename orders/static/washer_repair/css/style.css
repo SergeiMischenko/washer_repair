@@ -1027,6 +1027,37 @@ pre {
     text-shadow: var(--text-shadow-black);
 }
 
+/* Error */
+.error {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    font-weight: 500;
+    text-shadow: var(--text-shadow-black);
+}
+
+.error-text {
+    display: flex;
+    max-width: 570px;
+    flex-direction: column;
+    text-align: center;
+    font-weight: 500;
+    justify-content: center;
+    text-shadow: var(--text-shadow-black);
+
+    & h1 {
+        font-size: 30px;
+        margin: 0;
+    }
+
+    & h3 {
+        font-size: 22px;
+        margin: 0;
+    }
+}
+
 /* Footer */
 .footer {
     background-color: var(--color-blue);
@@ -1432,6 +1463,18 @@ pre {
         &::-webkit-scrollbar {
             width: 5px;
         }
+    }
+
+    /* Error */
+    .error {
+        flex-direction: column;
+    }
+    .error-text {
+        align-items: center;
+    }
+    .error404-pic, .error500-pic {
+        height: 100%;
+        aspect-ratio: 1 / 1;
     }
 }
 
