@@ -8,6 +8,7 @@ class StaticSitemap(Sitemap):
     """
     Карта-сайта для статичных страниц и примерной страницы с токеном
     """
+
     changefreq = "weekly"
     priority = 0.9
 
