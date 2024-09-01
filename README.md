@@ -1,3 +1,4 @@
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/django?style=plastic&logo=Python)
 <h1 align="center">Сайт по ремонту стиральных машин</h1>
 
 <h4 align="center">Этот проект представляет собой веб-сайт для компании по ремонту стиральных машин, разработанный на Django. Сайт позволяет клиентам оставлять заявки на ремонт, а мастерам управлять этими заявками. Проект развернут на VPS сервере и настроен для работы с Nginx и Gunicorn. Адрес сайта: https://orel-tech.ru</h4>
