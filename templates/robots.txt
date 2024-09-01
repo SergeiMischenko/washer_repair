@@ -7,17 +7,20 @@ Disallow: /*.txt
 Allow: /feedback
 Disallow: /admin
 Disallow: /privacy
+Disallow: /add_review
 
 User-agent: Yandex
 Allow: /feedback
 Disallow: /admin
 Disallow: /privacy
+Disallow: /add_review
 Crawl-delay: 3
 
 User-agent: Googlebot
 Allow: /feedback
 Disallow: /admin
 Disallow: /privacy
+Disallow: /add_review
 Crawl-delay: 3
 
 Host: https://orel-tech.ru
