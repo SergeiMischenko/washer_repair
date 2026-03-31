@@ -1,24 +1,15 @@
 import os
 from pathlib import Path
 
-import environ
+BASE_DIR = Path(__file__).resolve().parent.parent
 
-root = environ.Path(__file__) - 2
-env = environ.Env()
-environ.Env.read_env(env.str(root(), "./docker/env/.env.dev"))
+SECRET_KEY="django-insecure-ex1p@mtaszq+$3@%3gvsa77#8%sv26au^)gq^9mcx063k$hz@v"
 
-BASE_DIR = root()
+DEBUG = False
 
-SECRET_KEY = env.str("SECRET_KEY")
-
-DEBUG = bool(env("DEBUG", default=False))
-ALLOWED_HOSTS = env("ALLOWED_HOSTS", default="").split()
-INTERNAL_IPS = env("ALLOWED_HOSTS", default="").split()
-SITE_URL = env("SITE_URL", default="orel.tech.ru")
-CSRF_TRUSTED_ORIGINS = env("CSRF_TRUSTED_ORIGINS").split()
-
-TELEGRAM_BOT_TOKEN = env.str("TELEGRAM_BOT_TOKEN")
-TELEGRAM_CHAT_ID = env.str("TELEGRAM_CHAT_ID")
+ALLOWED_HOSTS = [""]
+SITE_URL = ""
+CSRF_TRUSTED_ORIGINS = ""
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -52,7 +43,7 @@ ROOT_URLCONF = "washer_repair.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [BASE_DIR + "/templates"],
+        "DIRS": [BASE_DIR / "templates"],
         "APP_DIRS": False,
         "OPTIONS": {
             "context_processors": [
@@ -77,16 +68,24 @@ TEMPLATES = [
 WSGI_APPLICATION = "washer_repair.wsgi.application"
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql_psycopg2",
-        "NAME": env.str("POSTGRES_DB", "washer_repair_db"),
-        "USER": env.str("POSTGRES_USER", "postgres"),
-        "PASSWORD": env.str("POSTGRES_PASSWORD", "postgres"),
-        "HOST": env.str("POSTGRES_HOST", "localhost"),
-        "PORT": env.int("POSTGRES_PORT", 5432),
-    },
-    "extra": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR + "db.sqlite3"},
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.postgresql_psycopg2",
+#         "NAME": env.str("POSTGRES_DB", "washer_repair_db"),
+#         "USER": env.str("POSTGRES_USER", "postgres"),
+#         "PASSWORD": env.str("POSTGRES_PASSWORD", "postgres"),
+#         "HOST": env.str("POSTGRES_HOST", "localhost"),
+#         "PORT": env.int("POSTGRES_PORT", 5432),
+#     },
+#     "extra": {"ENGINE": "django.db.backends.sqlite3", "NAME": BASE_DIR + "db.sqlite3"},
+# }
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -107,30 +106,30 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 # Internationalization
 LANGUAGE_CODE = "ru-ru"
-TIME_ZONE = "Europe/Moscow"
+TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
 # Static and media
-STATIC_URL = "static/"
-# if DEBUG:
-#     STATICFILES_DIRS = (BASE_DIR + "/static/",)
-# else:
-STATIC_ROOT = BASE_DIR + "/static/"
-MEDIA_URL = "media/"
-MEDIA_ROOT = ((BASE_DIR + "/media/"),)
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Phone number settings
 PHONENUMBER_DB_FORMAT = "NATIONAL"
 PHONENUMBER_DEFAULT_FORMAT = "NATIONAL"
 PHONENUMBER_DEFAULT_REGION = "RU"
 
+TELEGRAM_BOT_TOKEN = ""
+TELEGRAM_CHAT_ID = ""
+
 # Email settings
-EMAIL_HOST = env.str("EMAIL_HOST")
-EMAIL_HOST_USER = env.str("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = env.str("EMAIL_HOST_PASSWORD")
-EMAIL_PORT = env.int("EMAIL_PORT")
-EMAIL_USE_SSL = env.bool("EMAIL_USE_SSL")
+EMAIL_HOST = "smtp.yandex.ru"
+EMAIL_HOST_USER = ""
+EMAIL_HOST_PASSWORD = ""
+EMAIL_PORT = 465
+EMAIL_USE_SSL = True
 
 # Yandex mail settings
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
@@ -142,3 +141,8 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ["*"]
 CSRF_COOKIE_SECURE = False
+
+try:
+    from .local_settings import *
+except ImportError:
+    pass
