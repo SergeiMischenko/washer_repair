@@ -83,6 +83,12 @@ ___
     ```bash
     python manage.py runserver
 
+8. **Импорт данных:**
+    ```bash
+    python manage.py loaddata data_orders.json
+   
+
+
 ___
 <h2 align="center">Установка и запуск локально с Docker</h2>
 

@@ -1,0 +1,445 @@
+[
+  {
+    "model": "orders.master",
+    "pk": 1,
+    "fields": {
+      "name": "Евгений",
+      "surname": "Мищенко",
+      "phone": "+79624806480",
+      "email": "mishchienko90@gmail.com",
+      "work_experience": 10,
+      "qualification": "Руководитель"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 1,
+    "fields": {
+      "name": "Hi"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 2,
+    "fields": {
+      "name": "Candy"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 3,
+    "fields": {
+      "name": "Beko"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 4,
+    "fields": {
+      "name": "LG"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 5,
+    "fields": {
+      "name": "Hotpoint"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 6,
+    "fields": {
+      "name": "Samsung"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 7,
+    "fields": {
+      "name": "Hisense"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 8,
+    "fields": {
+      "name": "Haier"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 9,
+    "fields": {
+      "name": "Midea"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 10,
+    "fields": {
+      "name": "Gorenje"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 11,
+    "fields": {
+      "name": "Miele"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 12,
+    "fields": {
+      "name": "Bosch"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 13,
+    "fields": {
+      "name": "Asko"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 14,
+    "fields": {
+      "name": "Maunfeld"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 15,
+    "fields": {
+      "name": "Indesit"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 16,
+    "fields": {
+      "name": "Atlant"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 17,
+    "fields": {
+      "name": "Бирюса"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 18,
+    "fields": {
+      "name": "Tuvio"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 19,
+    "fields": {
+      "name": "Korting"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 20,
+    "fields": {
+      "name": "Kraft"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 21,
+    "fields": {
+      "name": "Whirlpool"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 22,
+    "fields": {
+      "name": "Viomi"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 23,
+    "fields": {
+      "name": "CHiQ"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 24,
+    "fields": {
+      "name": "Hansa"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 25,
+    "fields": {
+      "name": "Electrolux"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 26,
+    "fields": {
+      "name": "Siemens"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 27,
+    "fields": {
+      "name": "HOMSair"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 28,
+    "fields": {
+      "name": "Vestfrost"
+    }
+  },
+  {
+    "model": "orders.washermodel",
+    "pk": 29,
+    "fields": {
+      "name": "Другое"
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 1,
+    "fields": {
+      "name": "Диагностика (при ремонте)",
+      "price": 0
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 2,
+    "fields": {
+      "name": "Диагностика (при отказе от ремонта)",
+      "price": 500
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 3,
+    "fields": {
+      "name": "Замена сливного насоса",
+      "price": 1000
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 4,
+    "fields": {
+      "name": "Ремонт двери",
+      "price": 750
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 5,
+    "fields": {
+      "name": "Замена подшипников",
+      "price": 2500
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 6,
+    "fields": {
+      "name": "Ремонт бака или барабана",
+      "price": 1500
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 7,
+    "fields": {
+      "name": "Замена таходатчика",
+      "price": 750
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 8,
+    "fields": {
+      "name": "Устранение протечки",
+      "price": 1500
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 9,
+    "fields": {
+      "name": "Ремонт электронного модуля",
+      "price": 2000
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 10,
+    "fields": {
+      "name": "Замена заливного клапана",
+      "price": 1100
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 11,
+    "fields": {
+      "name": "Замена щеток двигателя",
+      "price": 800
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 12,
+    "fields": {
+      "name": "Ремонт двигателя",
+      "price": 800
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 13,
+    "fields": {
+      "name": "Ремонт или замена замка",
+      "price": 850
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 14,
+    "fields": {
+      "name": "Замена амортизаторов",
+      "price": 900
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 15,
+    "fields": {
+      "name": "Замена манжеты",
+      "price": 1000
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 16,
+    "fields": {
+      "name": "Замена тэна",
+      "price": 1100
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 17,
+    "fields": {
+      "name": "Полная чистка",
+      "price": 1500
+    }
+  },
+  {
+    "model": "orders.service",
+    "pk": 18,
+    "fields": {
+      "name": "Установка/подключение стиральной машины",
+      "price": 600
+    }
+  },
+  {
+    "model": "orders.repairrequest",
+    "pk": 1,
+    "fields": {
+      "name": "Валентина",
+      "surname": "Мураева",
+      "phone": "+79965645785",
+      "email": "",
+      "status": "Заявка закрыта",
+      "master": 1,
+      "model_washer": null,
+      "description": "",
+      "token": "4f00c6fd-aaa2-4ed3-8114-587745e83a1a",
+      "created_at": "2025-06-19T15:44:14.760Z",
+      "updated_at": "2025-06-19T15:45:33.362Z",
+      "services": []
+    }
+  },
+  {
+    "model": "orders.repairrequest",
+    "pk": 2,
+    "fields": {
+      "name": "Николай",
+      "surname": "Саньков",
+      "phone": "+79963377818",
+      "email": "",
+      "status": "Заявка закрыта",
+      "master": 1,
+      "model_washer": null,
+      "description": "",
+      "token": "75e0c591-a638-46b3-80c9-bdac5e7a0664",
+      "created_at": "2025-06-19T15:44:48.424Z",
+      "updated_at": "2025-06-19T15:44:58.389Z",
+      "services": []
+    }
+  },
+  {
+    "model": "orders.repairrequest",
+    "pk": 3,
+    "fields": {
+      "name": "Сергей",
+      "surname": "Фурков",
+      "phone": "+79996523568",
+      "email": "",
+      "status": "Заявка закрыта",
+      "master": 1,
+      "model_washer": null,
+      "description": "",
+      "token": "2bcd6b0e-7821-4bd4-b1bd-6167f4ba9eb8",
+      "created_at": "2025-06-19T15:45:18.848Z",
+      "updated_at": "2025-06-19T15:45:27.699Z",
+      "services": []
+    }
+  },
+  {
+    "model": "orders.review",
+    "pk": 1,
+    "fields": {
+      "order": 1,
+      "text": "Мастер поработал хорошо. Очень довольна его работой, услугами мастера с удовольствием будем ещё пользоваться. Приехал вовремя, как и договаривались, даже перезванивать не пришлось. Могу оставить отзыв только положительный.",
+      "rating": 5,
+      "created_at": "2025-03-06T11:27:00Z"
+    }
+  },
+  {
+    "model": "orders.review",
+    "pk": 2,
+    "fields": {
+      "order": 2,
+      "text": "Отлично выполнена работа, мастер пришёл вовремя, весь инструмент для работы имеется. Добросовестно и качественно сделал работу, цены адекватные, рекомендую.",
+      "rating": 5,
+      "created_at": "2025-04-22T14:27:31Z"
+    }
+  },
+  {
+    "model": "orders.review",
+    "pk": 3,
+    "fields": {
+      "order": 3,
+      "text": "Мастера рекомендую. Пунктуальный, предварительная цена, которую сообщил по телефону, после работы не изменилась. Быстро выявил причину поломки и устранил ее, провел диагностику и указал на потенциальную поломку.",
+      "rating": 5,
+      "created_at": "2025-06-07T06:27:53Z"
+    }
+  }
+]
